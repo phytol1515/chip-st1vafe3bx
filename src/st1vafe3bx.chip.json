@@ -1,0 +1,19 @@
+{
+    "name": "ST1VAFE3BX",
+    "author": "pekka.nikander@iki.fi",
+    "pins": [
+      "SCL/SPC",
+      "CS",
+      "SDO/TA0",
+      "SDA/SDI/SDO",
+      "NC",
+      "GND",
+      "INT/EXTCLK",
+      "GND",
+      "VDD",
+      "VDDIO",
+      "AH1/BIO1",
+      "AH2/BIO2"
+    ],
+    "controls": []
+  }
