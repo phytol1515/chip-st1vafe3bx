@@ -5,10 +5,10 @@ cmake_minimum_required(VERSION 3.13)
 # ---------------------------------------------------------------------------
 
 # The installation location of your WASI sysroot
-set(WASI_SYSROOT /usr/local/opt/wasi-sysroot CACHE PATH "Location of WASI sysroot.")
+set(WASI_SYSROOT /opt/wasi-sdk/share/sysroot/ CACHE PATH "Location of WASI sysroot.")
 
 # Path to a custom LLVM installation (comment out or adjust if using host clang).
-set(CUSTOM_LLVM_PATH /opt/homebrew/opt/llvm/bin CACHE PATH "Path to custom LLVM installation")
+set(CUSTOM_LLVM_PATH /usr/bin CACHE PATH "Path to custom LLVM installation")
 
 # ---------------------------------------------------------------------------
 # Tell CMake we’re cross-compiling for a generic system. Without this,
