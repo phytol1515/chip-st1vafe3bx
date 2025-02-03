@@ -1,0 +1,38 @@
+name: Build a Wokwi Custom Chip release and test it on Wokwi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: [ubuntu-24.04, self-hosted]
+    container:
+      # Use the Docker image as published to Docker Hub or GitHub Container Registry
+      image: ${{ github.repository }}/ubuntu-24.04-with-tools:latest
+      # Alternatively, if you’re testing locally and have built the image locally,
+      # use `act --pull=false` and act will use your local Docker image.
+      # See `.github/docker/Dockerfile` for the tools we need.
+    steps:
+      - name: Install WASI sysroot
+        uses: Phytol1515/wasi-sysroot-install-action@main
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Run CMake configure and build
+        uses: lukka/run-cmake@v10
+        with: 
+          configurePreset: web-wasm-debug
+          buildPreset: build
+
+  test:
+    name: Test
+    runs-on: [ubuntu-24.04, self-hosted]
+    container:
+      image: ${{ github.repository }}/ubuntu-24.04-with-tools:latest
+    steps:
+      - name: TBD
+        run: |
+          echo TBD
+

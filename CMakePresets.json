@@ -1,31 +1,39 @@
 {
     "version": 3,
     "cmakeMinimumRequired": {
-      "major": 3,
-      "minor": 13
+        "major": 3,
+        "minor": 13
     },
     "configurePresets": [
-      {
-        "name": "wasm-default",
-        "hidden": true,
-        "toolchainFile": "cmake/wasm32-unknown-wasi-toolchain.cmake",
-        "binaryDir": "${sourceDir}/build"
-      },
-      {
-        "name": "wasm-release",
-        "displayName": "WebAssembly (WASI) Release for Wokwi",
-        "inherits": "wasm-default",
-        "cacheVariables": {
-          "CMAKE_BUILD_TYPE": "Release"
+        {
+            "name": "web-wasm-default",
+            "hidden": true,
+            "toolchainFile": "${sourceDir}/cmake/wasm32-unknown-wasi-toolchain.cmake",
+            "binaryDir": "${sourceDir}/build"
+        },
+        {
+            "name": "web-wasm-release",
+            "displayName": "WebAssembly (WASI) Release for Wokwi",
+            "inherits": "web-wasm-default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "web-wasm-debug",
+            "displayName": "WebAssembly (WASI) Debug for Wokwi",
+            "inherits": "web-wasm-default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
         }
-      },
-      {
-        "name": "wasm-debug",
-        "displayName": "WebAssembly (WASI) Debug for Wokwi",
-        "inherits": "wasm-default",
-        "cacheVariables": {
-          "CMAKE_BUILD_TYPE": "Debug"
+    ],
+    "buildPresets": [
+        {
+            "name": "build",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "web-wasm-release"
         }
-      }
     ]
-  }
+}
