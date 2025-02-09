@@ -4,8 +4,19 @@ cmake_minimum_required(VERSION 3.13)
 # Configurable variables
 # ---------------------------------------------------------------------------
 
-# The installation location of your WASI sysroot
-set(WASI_SYSROOT /opt/wasi-sysroot CACHE PATH "Location of WASI sysroot.")
+# The installation location of the wasi-sysroot
+# If cached, use the cached value
+if(NOT DEFINED WASI_SYSROOT)
+  # If not cached, use the value set in the environment
+  set(WASI_SYSROOT "$ENV{WASI_SYSROOT}")
+  if(NOT WASI_SYSROOT)
+    # If not set in the environment, use the Linux default
+    set(WASI_SYSROOT "/opt/wasi_sysroot")
+  endif()
+  set(WASI_SYSROOT "${WASI_SYSROOT}" CACHE PATH "Path to the WASI sysroot")
+endif()
+
+message(STATUS "WASI_SYSROOT is set to: ${WASI_SYSROOT}")
 
 # Path to a LLVM installation (comment out or adjust if using host clang).
 set(CLANG_PATH /usr/bin CACHE PATH "Path to LLVM installation")
